@@ -28,8 +28,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('less-middleware')(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
@@ -75,6 +75,8 @@ var udpPort = new osc.UDPPort({
 
 udpPort.open();
 
+var Light = require('./lib/light');
+
 io.on('connection', function (socket) {
     console.log("socket.io connection");
     // socket.emit('news', { hello: 'world' });
@@ -87,8 +89,18 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('light', function (lightData) {
+        console.log('got light data from socket');
+        for (var i in lightData) {
+            if (lightData.hasOwnProperty(i)) {
+                console.log('setting color for ' + i);
+                Light.lights()[i].setColor(lightData[i]);
+            }
+        }
+    });
+
 });
 
-require('./lib/waiting-animation').start();
+//require('./lib/waiting-animation').start();
 
 module.exports = app;
