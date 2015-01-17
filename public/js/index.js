@@ -1,16 +1,10 @@
-var frontLeft, frontRight, leftEar, rightEar, sensor_status;
-
-frontLeft = ko.observable(4);
-
-frontRight = ko.observable(4);
-
-leftEar = ko.observable(4);
-
-rightEar = ko.observable(4);
+var sensor_status;
 
 (sensor_status = function() {
   var socket;
   $(".index-li").addClass("active");
+  window.app = new App();
+  ko.applyBindings(app);
   socket = io.connect(window.location.hostname);
   return socket.on("news", function(value) {
     if (!(value.args && value.address === "/muse/elements/horseshoe")) {
