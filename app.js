@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var Light = require('./lib/light');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -56,5 +58,14 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
+
+var light = new Light(0);
+light.setColor(0x990000);
+var light2 = new Light(1);
+light2.setColor(0xFFCC00);
+var light3 = new Light(2);
+light3.setColor(0x990000);
+var light4 = new Light(3);
+light4.setColor(0xFFCC00);
 
 module.exports = app;
