@@ -9,7 +9,8 @@ var socket = require('socket.io');
 var express = require('express');
 var http = require('http');
 var app = express();
-var server = http.createServer(app);
+app.set('port', process.env.PORT || 3000);
+var server = app.listen(app.get('port'));
 var io = require('socket.io').listen(server);
 
 var routes = require('./routes/index');
