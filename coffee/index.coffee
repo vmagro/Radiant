@@ -1,0 +1,3 @@
+(->
+  $(".index-li").addClass "active"
+)()

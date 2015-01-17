@@ -1,3 +1,3 @@
-(function () {
-    $(".index-li").addClass('active');
+(function() {
+  return $(".index-li").addClass("active");
 })();

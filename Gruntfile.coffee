@@ -15,6 +15,9 @@ module.exports = (grunt) ->
           'lib/light.js': ['lib/light.coffee']
           'lib/rgbtween.js': ['lib/rgbtween.coffee']
           'routes/lights.js': ['routes/lights.coffee']
+          'public/js/light-controls.js': ['coffee/light-controls.coffee']
+          'public/js/index.js': ['coffee/index.coffee']
+
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
