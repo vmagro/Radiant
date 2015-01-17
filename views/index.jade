@@ -2,6 +2,7 @@ extends layout
 
 block content
     .row
+        #frontLeftRed(data-bind='visible: frontLeft > 3 ').hidden
         .col-lg-3.col-md-6
             .panel.panel-red
                 .panel-heading
@@ -11,6 +12,28 @@ block content
                         .col-xs-9.text-right
                             .huge Front Left
                             div Adjust Fit
+
+        #frontLeftYellow(data-bind='visible: frontLeft == 2')
+            .col-lg-3.col-md-6
+                .panel.panel-yellow
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Front Left
+                                div Adjust Fit
+
+        #frontLeftGreen(data-bind='visible: frontLeft == 1')
+            .col-lg-3.col-md-6
+                .panel.panel-green
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Front Left
+                                div Ready
 
         .col-lg-3.col-md-6
             .panel.panel-red
