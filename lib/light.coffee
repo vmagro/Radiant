@@ -20,7 +20,7 @@ class Light
     universe.update channels
 
   getColor: () ->
-    return @hex.toString(16)
+    return '0x' + ("00000000" + @hex.toString(16)).slice -6
 
   hexToRgb: (hex) ->
     return {
