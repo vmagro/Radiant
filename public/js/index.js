@@ -3,7 +3,7 @@ var sensor_status;
 (sensor_status = function() {
   var socket;
   $(".index-li").addClass("active");
-  socket = io.connect("http://localhost:3000");
+  socket = io.connect(window.location.hostname);
   return socket.on("news", function(value) {
     var frontLeft, frontRight, leftEar, rightEar;
     if (!(value.args && value.address === "/muse/elements/horseshoe")) {

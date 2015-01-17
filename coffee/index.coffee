@@ -1,7 +1,7 @@
 do sensor_status = ->
   $(".index-li").addClass "active"
 
-  socket = io.connect("http://localhost:3000")
+  socket = io.connect(window.location.hostname)
   socket.on "news", (value) ->
     return  unless value.args and value.address is "/muse/elements/horseshoe"
     frontLeft = value.args[0]
