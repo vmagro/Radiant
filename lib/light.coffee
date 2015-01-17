@@ -5,7 +5,7 @@ universe = dmx.addUniverse('demo', 'enttec-usb-dmx-pro', 0)
 class Light
 
   constructor: (@num) ->
-    @channelR = @num * 4 + 1
+    @channelR = @num * 4
     @channelG = @channelR + 1
     @channelB = @channelG + 1
 
