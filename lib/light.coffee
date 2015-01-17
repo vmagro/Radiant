@@ -15,13 +15,18 @@ class Light
 
     Light.registerLight(@num, this)
 
-  setColor: (hex) ->
-    @tween = new RgbTween(Light.hexToRgb(@hex), Light.hexToRgb(hex), 1000)
+  setColor: (hex, duration, complete) ->
+    if arguments.length == 1
+      @tween = new RgbTween(Light.hexToRgb(@hex), Light.hexToRgb(hex), 1000)
+    else
+      @tween = new RgbTween(Light.hexToRgb(@hex), Light.hexToRgb(hex), duration)
 
     self = this
     @tween.onUpdate(() ->
       self.setColorImmediately(self.tween)
     )
+    if complete
+      @tween.onComplete(complete)
 
     @tween.start()
 
