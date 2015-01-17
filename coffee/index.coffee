@@ -1,8 +1,9 @@
+frontLeft = ko.observable 4
+frontRight = ko.observable 4
+leftEar = ko.observable 4
+rightEar = ko.observable 4
+
 do sensor_status = ->
-  @frontLeft = ko.observable 4
-  @frontRight = ko.observable 4
-  @leftEar = ko.observable 4
-  @rightEar = ko.observable 4
 
   $(".index-li").addClass "active"
 
