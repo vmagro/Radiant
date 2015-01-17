@@ -58,4 +58,6 @@ app.use(function (err, req, res, next) {
 //});
 
 
+require('./lib/waiting-animation').start();
+
 module.exports = app;

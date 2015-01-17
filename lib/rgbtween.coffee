@@ -44,9 +44,10 @@ class RgbTween
     @emitter.emit('update')
 
     if @r == @target.r and @g == @target.g and @b == @target.b
+      clearTimeout(@timeout)
       @emitter.emit('complete')
     else
-      setTimeout(@step.bind(this), stepLength)
+      @timeout = setTimeout(@step.bind(this), stepLength)
 
 
 module.exports = RgbTween
