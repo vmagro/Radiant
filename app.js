@@ -67,9 +67,6 @@ app.use(function (err, req, res, next) {
 
 var lastPointTime = Date.now();
 var now;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded())
-app.use(express.static(__dirname + '/public'));
 
 var udpPort = new osc.UDPPort({
     localAddress: "127.0.0.1",
