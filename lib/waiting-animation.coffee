@@ -2,7 +2,7 @@ Light = require('./light')
 evenLights = [Light.lights()[0], Light.lights()[2]]
 oddLights = [Light.lights()[1], Light.lights()[3]]
 
-duration = 1000
+duration = 375
 skip = 250
 
 start = ->
@@ -14,6 +14,7 @@ step1 = ->
     light.setColor 0x990000, duration
   for light in oddLights
     light.setColor 0xffcc00, duration
+
   setTimeout(step2, duration + skip)
 
 step2 = ->
@@ -21,6 +22,7 @@ step2 = ->
     light.setColor 0xffcc00, duration
   for light in oddLights
     light.setColor 0x990000, duration
+
   setTimeout(step1, duration + skip)
 
 end = ->
