@@ -3,17 +3,17 @@ extends layout
 block content
     .row
         #frontLeftRed(data-bind='visible: frontLeft > 3 ').hidden
-        .col-lg-3.col-md-6
-            .panel.panel-red
-                .panel-heading
-                    .row
-                        .col-xs-3
-                            i.fa.fa-exclamation-triangle.fa-5x
-                        .col-xs-9.text-right
-                            .huge Front Left
-                            div Adjust Fit
+            .col-lg-3.col-md-6
+                .panel.panel-red
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Front Left
+                                div Adjust Fit
 
-        #frontLeftYellow(data-bind='visible: frontLeft == 2')
+        #frontLeftYellow(data-bind='visible: frontLeft == 2').hidden
             .col-lg-3.col-md-6
                 .panel.panel-yellow
                     .panel-heading
@@ -24,7 +24,7 @@ block content
                                 .huge Front Left
                                 div Adjust Fit
 
-        #frontLeftGreen(data-bind='visible: frontLeft == 1')
+        #frontLeftGreen(data-bind='visible: frontLeft == 1').hidden
             .col-lg-3.col-md-6
                 .panel.panel-green
                     .panel-heading
@@ -35,35 +35,104 @@ block content
                                 .huge Front Left
                                 div Ready
 
-        .col-lg-3.col-md-6
-            .panel.panel-red
-                .panel-heading
-                    .row
-                        .col-xs-3
-                            i.fa.fa-exclamation-triangle.fa-5x
-                        .col-xs-9.text-right
-                            .huge Front Right
-                            div Adjust Fit
+        #frontRightRed(data-bind='visible: frontRight > 3 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-red
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Front Right
+                                div Adjust Fit
 
-        .col-lg-3.col-md-6
-            .panel.panel-red
-                .panel-heading
-                    .row
-                        .col-xs-3
-                            i.fa.fa-exclamation-triangle.fa-5x
-                        .col-xs-9.text-right
-                            .huge Left Ear
-                            div Adjust Fit
+        #frontRightYellow(data-bind='visible: frontRight == 2 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-yellow
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Front Right
+                                div Adjust Fit
 
-        .col-lg-3.col-md-6
-            .panel.panel-red
-                .panel-heading
-                    .row
-                        .col-xs-3
-                            i.fa.fa-exclamation-triangle.fa-5x
-                        .col-xs-9.text-right
-                            .huge Right Ear
-                            div Adjust Fit
+        #frontRightYellow(data-bind='visible: frontRight == 1 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-green
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Front Right
+                                div Ready
+
+        #leftEarGreen(data-bind='visible: leftEar > 3 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-red
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Left Ear
+                                div Adjust Fit
+
+        #leftEarYellow(data-bind='visible: leftEar == 2 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-yellow
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Left Ear
+                                div Adjust Fit
+
+        #leftEarRed(data-bind='visible: leftEar == 1 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-green
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Left Ear
+                                div Ready
+
+        #rightEarGreen(data-bind='visible: rightEar > 3 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-red
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Right Ear
+                                div Adjust Fit
+
+        #rightEarYellow(data-bind='visible: rightEar == 2 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-yellow
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Right Ear
+                                div Adjust Fit
+
+        #rightEarRed(data-bind='visible: rightEar == 1 ').hidden
+            .col-lg-3.col-md-6
+                .panel.panel-green
+                    .panel-heading
+                        .row
+                            .col-xs-3
+                                i.fa.fa-exclamation-triangle.fa-5x
+                            .col-xs-9.text-right
+                                .huge Right Ear
+                                div Ready
 
 
         .row
