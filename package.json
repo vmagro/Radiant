@@ -15,8 +15,9 @@
     "knockout": "^3.2.0",
     "less-middleware": "1.0.x",
     "morgan": "~1.5.1",
+    "osc": "~1.0.4",
     "serve-favicon": "~2.2.0",
-    "osc": "~1.0.4"
+    "socket.io": "^1.2.1"
   },
   "devDependencies": {
     "grunt-contrib-coffee": "~0.12.0",
