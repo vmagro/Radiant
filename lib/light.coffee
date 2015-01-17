@@ -9,8 +9,8 @@ class Light
     @channelG = @channelR + 1
     @channelB = @channelG + 1
 
-  setColor: (hex) ->
-    rgb = @hexToRgb(hex)
+  setColor: (@hex) ->
+    rgb = @hexToRgb(@hex)
 
     channels = {}
     channels[@channelR] = rgb.r
@@ -18,6 +18,9 @@ class Light
     channels[@channelB] = rgb.b
 
     universe.update channels
+
+  getColor: () ->
+    return @hex.toString(16)
 
   hexToRgb: (hex) ->
     return {

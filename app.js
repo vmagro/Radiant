@@ -5,10 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var Light = require('./lib/light');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var lights = require('./routes/lights');
 
 var app = express();
 
@@ -27,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/lights', lights);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -59,13 +59,5 @@ app.use(function (err, req, res, next) {
     });
 });
 
-var light = new Light(0);
-light.setColor(0x990000);
-var light2 = new Light(1);
-light2.setColor(0xffcc00);
-var light3 = new Light(2);
-light3.setColor(0x990000);
-var light4 = new Light(3);
-light4.setColor(0xffcc00);
 
 module.exports = app;
