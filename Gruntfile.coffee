@@ -13,6 +13,7 @@ module.exports = (grunt) ->
           bare: true
         files:
           'lib/light.js': ['lib/light.coffee']
+          'lib/rgbtween.js': ['lib/rgbtween.coffee']
           'routes/lights.js': ['routes/lights.coffee']
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
