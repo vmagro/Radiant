@@ -1,2 +1,52 @@
 extends layout
 block content
+    script(src='js/tinycolor.js')
+    script(src='js/bootstrap.colorpickersliders.min.js')
+    link(href='css/bootstrap.colorpickersliders.min.css', rel='stylesheet')
+
+    .row
+        h1 Controls
+        .col-lg-3.col-md-6
+            .panel.panel-primary
+                .panel-heading
+                    .row
+                        .col-xs-3
+                            i.fa.fa-sliders.fa-5x
+                        .col-xs-9.text-right
+                            .huge Light 1
+                #picker1.panel-body
+
+        .col-lg-3.col-md-6
+            .panel.panel-primary
+                .panel-heading
+                    .row
+                        .col-xs-3
+                            i.fa.fa-sliders.fa-5x
+                        .col-xs-9.text-right
+                            .huge Light 2
+                #picker2.panel-body.
+
+
+        .col-lg-3.col-md-6
+            .panel.panel-primary
+                .panel-heading
+                    .row
+                        .col-xs-3
+                            i.fa.fa-sliders.fa-5x
+                        .col-xs-9.text-right
+                            .huge Light 3
+                #picker3.panel-body.
+
+
+        .col-lg-3.col-md-6
+            .panel.panel-primary
+                .panel-heading
+                    .row
+                        .col-xs-3
+                            i.fa.fa-sliders.fa-5x
+                        .col-xs-9.text-right
+                            .huge Light 3
+                #picker4.panel-body.
+
+
+    script(src='js/light-controls.js')
