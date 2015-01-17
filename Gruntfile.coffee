@@ -4,7 +4,7 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
-        files: ['lib/*.coffee', 'routes/*.coffee']
+        files: ['lib/*.coffee', 'routes/*.coffee', 'coffee/*.coffee']
         tasks: ['coffee:build']
 
     coffee:
