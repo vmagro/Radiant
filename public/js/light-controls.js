@@ -1,5 +1,5 @@
 (function () {
-    console.log('hi');
+    $(".controls-li").addClass('active');
     $("#picker1").ColorPickerSliders({
         color: "rgb(36, 170, 242)",
         flat: true,
