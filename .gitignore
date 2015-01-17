@@ -35,3 +35,4 @@ npm-debug.log
 lib/*.js
 routes/lights.js
 public/js/index.js
+public/js/light-controls.js
