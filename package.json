@@ -15,7 +15,8 @@
     "knockout": "^3.2.0",
     "less-middleware": "1.0.x",
     "morgan": "~1.5.1",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "osc": "~1.0.4"
   },
   "devDependencies": {
     "grunt-contrib-coffee": "~0.12.0",

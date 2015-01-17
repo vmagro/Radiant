@@ -82,18 +82,12 @@ io.on('connection', function (socket) {
 	udpPort.on("message", function (oscData) {
 		now = Date.now()
 		if((now-lastPointTime <= 1000) || (lastPointTime-now <= 1000)) {
-			lastPointTime = now
+			lastPointTime = now;
 			socket.emit('news', oscData);
 		}
 	});
 
 });
-
-var port = Number(process.env.PORT || 3000);
-server.listen(port, function() {
-  console.log("Listening on " + port);
-});
-
 
 require('./lib/waiting-animation').start();
 
