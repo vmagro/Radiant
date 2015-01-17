@@ -62,10 +62,10 @@ app.use(function (err, req, res, next) {
 var light = new Light(0);
 light.setColor(0xff0000);
 var light2 = new Light(1);
-light2.setColor(0xff0000);
+light2.setColor(0xffd700);
 var light3 = new Light(2);
 light3.setColor(0xff0000);
 var light4 = new Light(3);
-light4.setColor(0xff0000);
+light4.setColor(0xffd700);
 
 module.exports = app;
