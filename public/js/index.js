@@ -10,13 +10,13 @@ var sensor_status;
     if (!(value.args && value.address === "/muse/elements/horseshoe")) {
       return;
     }
-    this.leftEar(value.args[0]);
-    this.frontLeft(value.args[1]);
-    this.frontRight(value.args[2]);
-    this.rightEar(value.args[3]);
-    console.log('front left: ' + this.frontLeft);
-    console.log('front right: ' + this.frontRight);
-    console.log('left ear: ' + this.leftEar);
-    return console.log('right ear: ' + this.rightEar);
+    app.leftEar(value.args[0]);
+    app.frontLeft(value.args[1]);
+    app.frontRight(value.args[2]);
+    app.rightEar(value.args[3]);
+    console.log('front left: ' + value.args[1]);
+    console.log('front right: ' + value.args[2]);
+    console.log('left ear: ' + value.args[0]);
+    return console.log('right ear: ' + value.args[3]);
   });
 })();
