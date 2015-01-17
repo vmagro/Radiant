@@ -1,11 +1,15 @@
-var sensor_status;
+var frontLeft, frontRight, leftEar, rightEar, sensor_status;
+
+frontLeft = ko.observable(4);
+
+frontRight = ko.observable(4);
+
+leftEar = ko.observable(4);
+
+rightEar = ko.observable(4);
 
 (sensor_status = function() {
   var socket;
-  this.frontLeft = ko.observable(4);
-  this.frontRight = ko.observable(4);
-  this.leftEar = ko.observable(4);
-  this.rightEar = ko.observable(4);
   $(".index-li").addClass("active");
   socket = io.connect(window.location.hostname);
   return socket.on("news", function(value) {
