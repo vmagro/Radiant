@@ -2,6 +2,8 @@ DMX = require('dmx')
 dmx = new DMX()
 universe = dmx.addUniverse('demo', 'enttec-usb-dmx-pro', 0)
 
+RgbTween = require('./rgbtween')
+
 class Light
 
   @lights = []
@@ -13,9 +15,19 @@ class Light
 
     Light.registerLight(@num, this)
 
-  setColor: (@hex) ->
-    rgb = Light.hexToRgb(@hex)
+  setColor: (hex) ->
+    @tween = new RgbTween(Light.hexToRgb(@hex), Light.hexToRgb(hex), 1000)
 
+    self = this
+    @tween.onUpdate(() ->
+      self.setColorImmediately(self.tween)
+    )
+
+    @tween.start()
+
+    @hex = hex
+
+  setColorImmediately: (rgb) ->
     channels = {}
     channels[@channelR] = rgb.r
     channels[@channelG] = rgb.g
