@@ -21,7 +21,7 @@ class Light
     channels[@channelG] = rgb.g
     channels[@channelB] = rgb.b
 
-    universe.update channels
+    universe.update(channels)
 
   getColor: () ->
     return '0x' + ("00000000" + @hex.toString(16)).slice -6
@@ -38,5 +38,10 @@ class Light
 
   @lights: () ->
     @lights
+
+  @setAll: (hex) ->
+    for _, light of @lights
+      light.setColor(hex)
+    return
 
 module.exports = Light
