@@ -1,4 +1,4 @@
-(->
+do sensor_status = ->
   $(".index-li").addClass "active"
 
   socket = io.connect("http://localhost:3000")
@@ -13,6 +13,3 @@
     console.log 'front right: ' + frontRight
     console.log 'left ear: ' + leftEar
     console.log 'right ear: ' + rightEar
-
-)
-()
