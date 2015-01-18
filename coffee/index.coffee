@@ -3,8 +3,6 @@ do sensor_status = ->
 
   window.app = new App()
   ko.applyBindings app
-  mellowIncrement = 0
-  concentrationIncrement = 0
 
   $(".index-li").click ->
     $(this).addClass "active"
@@ -26,10 +24,18 @@ do sensor_status = ->
       console.log 'right ear: ' + value.args[3]
 
     if value.args and value.address is "/muse/elements/experimental/concentration"
-      app.concentrationGraphData.push([concentrationIncrement++, value.args[0]])
+      app.concentrationGraphData.shift()
+      app.concentrationGraphData(for elem in app.concentrationGraphData()
+          elem = [elem[0] - 1, elem[1]]
+      )
+      app.concentrationGraphData.push([app.concentrationGraphData().length, value.args[0]])
 
     if value.args and value.address is "/muse/elements/experimental/mellow"
-      app.mellowGraphData.push([mellowIncrement++, value.args[0]])
+      app.mellowGraphData.shift()
+      app.mellowGraphData(for elem in app.mellowGraphData()
+          elem = [elem[0] - 1, elem[1]]
+      )
+      app.mellowGraphData.push([app.mellowGraphData().length, value.args[0]])
 
 
 $(document).ready(() ->
