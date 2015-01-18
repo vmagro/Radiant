@@ -5,6 +5,8 @@ oddLights = [Light.lights()[1], Light.lights()[3]]
 duration = 375
 skip = 250
 
+timeout = -1
+
 start = ->
   console.log('starting wait animation')
   step1()
@@ -15,7 +17,7 @@ step1 = ->
   for light in oddLights
     light.setColor 0xffcc00, duration
 
-  setTimeout(step2, duration + skip)
+  timeout = setTimeout(step2, duration + skip)
 
 step2 = ->
   for light in evenLights
@@ -23,10 +25,10 @@ step2 = ->
   for light in oddLights
     light.setColor 0x990000, duration
 
-  setTimeout(step1, duration + skip)
+  timeout = setTimeout(step1, duration + skip)
 
 end = ->
-  console.log('ending wait animation')
+  clearTimeout(timeout)
 
 module.exports =
   start: start
