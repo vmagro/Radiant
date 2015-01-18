@@ -6,12 +6,12 @@ skip = 250
 count = 0
 
 start = ->
-  console.log('started animation')
+#  console.log('started animation')
   begin()
 
 begin = ->
   arr = [0x990000, 0xffdd00, 0x55acee, 0x66cc66]
-  console.log('running')
+#  console.log('running')
 
   for light in allLights
     light.setColor arr[count % arr.length], duration
@@ -21,7 +21,7 @@ begin = ->
   setTimeout(begin,duration + skip)
 
 end = ->
-  console.log('ending animation')
+#  console.log('ending animation')
 
 module.exports =
   start: start

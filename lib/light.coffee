@@ -13,6 +13,8 @@ class Light
     @channelG = @channelR + 1
     @channelB = @channelG + 1
 
+    @hex = 0x000000
+
     Light.registerLight(@num, this)
 
   setColor: (hex, duration, complete) ->
@@ -45,6 +47,8 @@ class Light
     channels[@channelG] = rgb.g
     channels[@channelB] = rgb.b
 
+    @hex = (rgb.r << 16) + (rgb.g << 8) + rgb.b
+
     universe.update(channels)
 
   getColor: () ->
@@ -66,6 +70,11 @@ class Light
   @setAll: (hex) ->
     for _, light of @lights
       light.setColor(hex)
+    return
+
+  @setAllImmediately: (rgb) ->
+    for _, light of @lights
+      light.setColorImmediately(rgb)
     return
 
 module.exports = Light

@@ -64,10 +64,17 @@ app.use (err, req, res, next) ->
 #    });
 #});
 
+Light = require('./lib/light');
+
+lights = [];
+for num in [0...4]
+  lights.push new Light num
+
 lastPointTime = Date.now()
 now = undefined
 
-blink182 = 0x00000
+blink182 = 0x000
+jawbone = 0x000
 
 udpPort = new osc.UDPPort(
   localAddress: "127.0.0.1"
@@ -75,9 +82,8 @@ udpPort = new osc.UDPPort(
 )
 udpPort.open()
 
-Light = require("./lib/light")
-waiting = require("./lib/waiting-animation")
-#waiting.start()
+standby = require("./lib/standby-animation")
+#standby.start()
 
 chroma = require('chroma-js')
 
@@ -92,24 +98,24 @@ io.on "connection", (socket) ->
       lastPointTime = now
       socket.emit "news", oscData
 
-    if oscData.args and oscData.address is "/muse/elements/jaw_clench"
-      jawClench = oscData.args[0]
-      if jawClench != 1
-        require('./lib/cycle-animation').end()
-      else
-        require('./lib/cycle-animation').start()
-      return
-
-    if oscData.args and oscData.address is "muse/elements/blink"
-      blink = oscData.args[0]
-      blink182 = ((blink182 << 4) | 1) & 0x11111
-      if blink182 == 0x11111
-        console.log("")
-        require('./lib/cal-animation').start()
-      else
-        require('./lib/cal-animation').end()
-      console.log(blink182)
-      return
+#    if oscData.args and oscData.address is "/muse/elements/jaw_clench"
+#      jawClench = oscData.args[0]
+#      if jawClench != 1
+#        require('./lib/cycle-animation').end()
+#      else
+#        console.log("jaw clench")
+#        require('./lib/cycle-animation').start()
+#        return
+#
+#
+#    if oscData.args and oscData.address is "muse/elements/blink"
+#      blink = oscData.args[0]
+#      if blink == 1
+#        console.log("all the small things")
+#        require('./lib/cal-animation').start()
+#      else
+#        require('./lib/cal-animation').end()
+#      return
 
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
       scale = chroma.scale(['blue', 'red'])
@@ -121,11 +127,12 @@ io.on "connection", (socket) ->
       for i in [0...4]
         lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
         i++
-      socket.emit "light", lightVals
+      console.log("juice from concentrate")
+#      socket.emit "light", lightVals
 
   socket.on "light", (lightData) ->
-    console.log "got light data from socket"
-    waiting.end()
+    console.log("got light data from socket")
+    standby.end()
     for i of lightData
       if lightData.hasOwnProperty(i)
         console.log "setting color for " + i + " -> " + lightData[i].toString(16)
@@ -142,6 +149,7 @@ io.on "connection", (socket) ->
     if oscData.args and oscData.address is "/muse/elements/touching_forehead"
       touching = oscData.args[0]
       if touching != 1
+        console.log("waiting on the world to change")
         require('./lib/waiting-animation').start()
       else
         require('./lib/waiting-animation').end()
