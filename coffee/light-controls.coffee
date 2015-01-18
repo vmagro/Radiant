@@ -23,7 +23,7 @@ do lights = ->
 
   io().on('light', (data) ->
     for num, color in data
-      lightObservables[num] = color
+      lightObservables[num](color)
   )
 
   $(".controls-li").click ->
