@@ -100,19 +100,20 @@ io.on "connection", (socket) ->
     if oscData.args and oscData.address is "/muse/elements/touching_forehead"
       touching = oscData.args[0]
       if touching != 1
-        standby.start()
+        if enabled
+          standby.start()
         enabled = false
       else
         standby.end()
         enabled = true
 
     if enabled
-      if oscData.args and oscData.address is "/muse/elements/jaw_clench"
-        jawClench = oscData.args[0]
-        if jawClench != 1
-          require('./lib/cycle-animation').end()
-        else
-          require('./lib/cycle-animation').start()
+#      if oscData.args and oscData.address is "/muse/elements/jaw_clench"
+#        jawClench = oscData.args[0]
+#        if jawClench != 1
+#          require('./lib/cycle-animation').end()
+#        else
+#          require('./lib/cycle-animation').start()
 
       if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
         scale = chroma.scale(['blue', 'red'])
