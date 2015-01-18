@@ -84,6 +84,8 @@ standby.start()
 
 chroma = require('chroma-js')
 
+enabled = false
+
 io.on "connection", (socket) ->
   console.log "socket.io connection"
 
@@ -99,30 +101,33 @@ io.on "connection", (socket) ->
       touching = oscData.args[0]
       if touching != 1
         standby.start()
+        enabled = false
       else
         standby.end()
+        enabled = true
 
-    if oscData.args and oscData.address is "/muse/elements/jaw_clench"
-      jawClench = oscData.args[0]
-      if jawClench != 1
-        require('./lib/cycle-animation').end()
-      else
-        require('./lib/cycle-animation').start()
+    if enabled
+      if oscData.args and oscData.address is "/muse/elements/jaw_clench"
+        jawClench = oscData.args[0]
+        if jawClench != 1
+          require('./lib/cycle-animation').end()
+        else
+          require('./lib/cycle-animation').start()
 
-    if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
-      scale = chroma.scale(['blue', 'red'])
-      color = scale(oscData.args[0])
-      Light.setAllImmediately({
-        r: color._rgb[0],
-        g: color._rgb[1],
-        b: color._rgb[2]
-      })
+      if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
+        scale = chroma.scale(['blue', 'red'])
+        color = scale(oscData.args[0])
+        Light.setAllImmediately({
+          r: color._rgb[0],
+          g: color._rgb[1],
+          b: color._rgb[2]
+        })
 
-      lightVals = {}
-      for i in [0...4]
-        lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
-        i++
-      socket.emit "light", lightVals
+        lightVals = {}
+        for i in [0...4]
+          lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
+          i++
+        socket.emit "light", lightVals
 
   socket.on "light", (lightData) ->
     console.log "got light data from socket"
