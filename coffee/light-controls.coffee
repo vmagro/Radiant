@@ -1,7 +1,7 @@
 do lights = ->
   window.app = new App()
   ko.applyBindings app
-  lightObservables = [app.light1, app.light2, app.light3 app.light4]
+  lightObservables = [app.light1, app.light2, app.light3, app.light4]
 
   onChangeFor = (pickerNum) ->
     return (container, color) ->
@@ -11,6 +11,8 @@ do lights = ->
       if($('#lights-linked').prop('checked'))
         for obs in lightObservables
           obs(parseInt(color.tiny.toHex(), 16))
+      else
+        lightObservables[pickerNum](parseInt(color.tiny.toHex(), 16))
 
   subscribeFor = (pickerNum) ->
     return (value) ->
