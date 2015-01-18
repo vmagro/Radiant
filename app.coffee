@@ -97,7 +97,7 @@ io.on "connection", (socket) ->
       Light.setAll(color)
 
       lightVals = {}
-      for i in [0..4]
+      for i in [0...4]
         lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
         i++
       socket.emit "light", lightVals
@@ -112,7 +112,7 @@ io.on "connection", (socket) ->
 
 
     lightVals = {}
-    for i in [0..4]
+    for i in [0...4]
       lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
       i++
     socket.emit "light", lightVals
