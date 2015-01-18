@@ -4,7 +4,7 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
-        files: ['lib/*.coffee', 'routes/*.coffee', 'coffee/*.coffee']
+        files: ['app.coffee', 'lib/*.coffee', 'routes/*.coffee', 'coffee/*.coffee']
         tasks: ['coffee:build']
 
     coffee:
@@ -21,6 +21,7 @@ module.exports = (grunt) ->
           'public/js/app-all.js': ['coffee/app.coffee']
           'public/js/light-controls.js': ['coffee/light-controls.coffee']
           'public/js/index.js': ['coffee/index.coffee']
+          'app.js': ['app.coffee']
 
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
