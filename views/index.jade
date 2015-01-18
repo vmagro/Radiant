@@ -2,7 +2,7 @@ extends layout
 
 block content
     .row
-        #frontLeftRed(data-bind='visible: frontLeft > 3 ').hidden
+        #frontLeftRed(data-bind='if: frontLeft() >= 3')
             .col-lg-3.col-md-6
                 .panel.panel-red
                     .panel-heading
@@ -13,7 +13,7 @@ block content
                                 .huge Front Left
                                 div Adjust Fit
 
-        #frontLeftYellow(data-bind='visible: frontLeft == 2').hidden
+        #frontLeftYellow(data-bind='if: frontLeft() == 2')
             .col-lg-3.col-md-6
                 .panel.panel-yellow
                     .panel-heading
@@ -24,7 +24,7 @@ block content
                                 .huge Front Left
                                 div Adjust Fit
 
-        #frontLeftGreen(data-bind='visible: frontLeft == 1').hidden
+        #frontLeftGreen(data-bind='if: frontLeft() == 1')
             .col-lg-3.col-md-6
                 .panel.panel-green
                     .panel-heading
@@ -35,7 +35,7 @@ block content
                                 .huge Front Left
                                 div Ready
 
-        #frontRightRed(data-bind='visible: frontRight > 3 ').hidden
+        #frontRightRed(data-bind='visible: frontRight() > 3 ')
             .col-lg-3.col-md-6
                 .panel.panel-red
                     .panel-heading
@@ -46,7 +46,7 @@ block content
                                 .huge Front Right
                                 div Adjust Fit
 
-        #frontRightYellow(data-bind='visible: frontRight == 2 ').hidden
+        #frontRightYellow(data-bind='visible: frontRight() == 2 ')
             .col-lg-3.col-md-6
                 .panel.panel-yellow
                     .panel-heading
@@ -57,7 +57,7 @@ block content
                                 .huge Front Right
                                 div Adjust Fit
 
-        #frontRightYellow(data-bind='visible: frontRight == 1 ').hidden
+        #frontRightYellow(data-bind='visible: frontRight() == 1 ')
             .col-lg-3.col-md-6
                 .panel.panel-green
                     .panel-heading
@@ -68,7 +68,7 @@ block content
                                 .huge Front Right
                                 div Ready
 
-        #leftEarGreen(data-bind='visible: leftEar > 3 ').hidden
+        #leftEarGreen(data-bind='visible: leftEar() > 3 ')
             .col-lg-3.col-md-6
                 .panel.panel-red
                     .panel-heading
@@ -79,7 +79,7 @@ block content
                                 .huge Left Ear
                                 div Adjust Fit
 
-        #leftEarYellow(data-bind='visible: leftEar == 2 ').hidden
+        #leftEarYellow(data-bind='visible: leftEar() == 2 ')
             .col-lg-3.col-md-6
                 .panel.panel-yellow
                     .panel-heading
@@ -90,7 +90,7 @@ block content
                                 .huge Left Ear
                                 div Adjust Fit
 
-        #leftEarRed(data-bind='visible: leftEar == 1 ').hidden
+        #leftEarRed(data-bind='visible: leftEar() == 1 ')
             .col-lg-3.col-md-6
                 .panel.panel-green
                     .panel-heading
@@ -101,7 +101,7 @@ block content
                                 .huge Left Ear
                                 div Ready
 
-        #rightEarGreen(data-bind='visible: rightEar > 3 ').hidden
+        #rightEarGreen(data-bind='visible: rightEar() > 3 ')
             .col-lg-3.col-md-6
                 .panel.panel-red
                     .panel-heading
@@ -112,7 +112,7 @@ block content
                                 .huge Right Ear
                                 div Adjust Fit
 
-        #rightEarYellow(data-bind='visible: rightEar == 2 ').hidden
+        #rightEarYellow(data-bind='visible: rightEar() == 2 ')
             .col-lg-3.col-md-6
                 .panel.panel-yellow
                     .panel-heading
@@ -123,7 +123,7 @@ block content
                                 .huge Right Ear
                                 div Adjust Fit
 
-        #rightEarRed(data-bind='visible: rightEar == 1 ').hidden
+        #rightEarRed(data-bind='visible: rightEar() == 1 ')
             .col-lg-3.col-md-6
                 .panel.panel-green
                     .panel-heading
