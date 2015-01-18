@@ -112,7 +112,6 @@ io.on "connection", (socket) ->
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
       scale = chroma.scale(['blue', 'red'])
       color = scale(oscData.args[0])
-      color = (color._rgb[0] << 16) + (color._rgb[1] << 8) + color._rgb[2];
       Light.setAllImmediately({
         r: color._rgb[0],
         g: color._rgb[1],
