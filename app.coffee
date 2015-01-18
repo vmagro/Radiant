@@ -73,6 +73,8 @@ for num in [0...4]
 lastPointTime = Date.now()
 now = undefined
 
+active = false
+
 blink182 = 0x000
 jawbone = 0x000
 
@@ -98,15 +100,19 @@ io.on "connection", (socket) ->
       lastPointTime = now
       socket.emit "news", oscData
 
-#    if oscData.args and oscData.address is "/muse/elements/jaw_clench"
-#      jawClench = oscData.args[0]
-#      if jawClench != 1
-#        require('./lib/cycle-animation').end()
-#      else
-#        console.log("jaw clench")
-#        require('./lib/cycle-animation').start()
-#        return
-#
+    if oscData.args and oscData.address is "/muse/elements/jaw_clench"
+      jawClench = oscData.args[0]
+      if jawClench != 1
+        if active
+          require('./lib/cycle-animation').end()
+        active = false
+      else
+        console.log("curr")
+        if not active
+          console.log("jaw clench")
+          require('./lib/cycle-animation').start()
+        active = true
+
 #
 #    if oscData.args and oscData.address is "muse/elements/blink"
 #      blink = oscData.args[0]
