@@ -27,6 +27,10 @@ class RgbTween
   start: () ->
     @step()
 
+  cancel: () ->
+    console.log('cancelling tween')
+    clearTimeout(@timeout)
+
   step: () ->
     @r += @rStep
     @g += @gStep

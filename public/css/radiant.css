@@ -9,6 +9,17 @@
     overflow:hidden;
 }
 
+.controls-header {
+    display: inline-block;
+    width: auto;
+    margin-right: 10px;
+}
+
+#lights-linked {
+    display: inline-block;
+    margin-left: 10px;
+}
+
 .navbar-brand {
     float: left;
     height: 64px;

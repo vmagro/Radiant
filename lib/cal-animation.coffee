@@ -13,17 +13,17 @@ start = ->
 
 step1 = ->
   for light in evenLights
-    light.setColor 0x990000, duration
+    light.setColor 0x1769ff, duration
   for light in oddLights
-    light.setColor 0xffcc00, duration
+    light.setColor 0xffcc33, duration
 
   timeout = setTimeout(step2, duration + skip)
 
 step2 = ->
   for light in evenLights
-    light.setColor 0xffcc00, duration
+    light.setColor 0xffcc33, duration
   for light in oddLights
-    light.setColor 0x990000, duration
+    light.setColor 0x1769ff, duration
 
   timeout = setTimeout(step1, duration + skip)
 
