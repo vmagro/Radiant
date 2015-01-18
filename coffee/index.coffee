@@ -88,6 +88,7 @@ do mellow_chart = ->
 
   plot.draw()
 
+
 do concentration_chart = ->
   container = $("#concentration-graph")
 
