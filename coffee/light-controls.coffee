@@ -7,6 +7,8 @@ do lights = ->
       data[pickerNum] = parseInt(color.tiny.toHex(), 16)
       io().emit('light', data)
       if($('#lights-linked').prop('checked'))
+        for i in [1..4]
+          $('#picker'+i).trigger('colorpickersliders.updateColor', color.tiny.toHex())
         for obs in lightObservables
           obs(parseInt(color.tiny.toHex(), 16))
       else
