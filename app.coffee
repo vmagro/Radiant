@@ -64,6 +64,12 @@ app.use (err, req, res, next) ->
 #    });
 #});
 
+Light = require('./lib/light');
+
+lights = [];
+for num in [0...4]
+  lights.push new Light num
+
 lastPointTime = Date.now()
 now = undefined
 
@@ -73,7 +79,6 @@ udpPort = new osc.UDPPort(
 )
 udpPort.open()
 
-Light = require("./lib/light")
 waiting = require("./lib/waiting-animation")
 #waiting.start()
 
