@@ -1,28 +1,34 @@
 Light = require('./light')
-allLights = [Light.lights()[0], Light.lights()[1], Light.lights()[2], Light.lights()[3]]
+evenLights = [Light.lights()[0], Light.lights()[2]]
+oddLights = [Light.lights()[1], Light.lights()[3]]
 
-duration = 575
+duration = 375
 skip = 250
-count = 0
+
+timeout = -1
 
 start = ->
-  console.log('started animation')
-  begin()
+  console.log('starting wait animation')
+  step1()
 
-begin = ->
-  arr = [0x55acee, 0xffcc33, 0x55acee, 0xffcc33]
-  console.log('running')
+step1 = ->
+  for light in evenLights
+    light.setColor 0x1769ff, duration
+  for light in oddLights
+    light.setColor 0xffcc33, duration
 
-  for light in allLights
-    light.setColor arr[count % arr.length], duration
-    count++
-    console.log(count % arr.length)
+  timeout = setTimeout(step2, duration + skip)
 
-  count++
-  timeout = setTimeout(begin, duration + skip)
+step2 = ->
+  for light in evenLights
+    light.setColor 0xffcc33, duration
+  for light in oddLights
+    light.setColor 0x1769ff, duration
+
+  timeout = setTimeout(step1, duration + skip)
 
 end = ->
-  console.log('ending animation')
+  clearTimeout(timeout)
 
 module.exports =
   start: start
