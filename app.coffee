@@ -113,7 +113,11 @@ io.on "connection", (socket) ->
       scale = chroma.scale(['blue', 'red'])
       color = scale(oscData.args[0])
       color = (color._rgb[0] << 16) + (color._rgb[1] << 8) + color._rgb[2];
-      Light.setAll(color)
+      Light.setAllImmediately({
+        r: color._rgb[0],
+        g: color._rgb[1],
+        b: color._rgb[2]
+      })
 
       lightVals = {}
       for i in [0...4]
