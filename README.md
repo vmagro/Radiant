@@ -13,6 +13,10 @@ Pair Muse and run:
 ````
 muse-io --preset 14 --device Muse --osc osc.udp://localhost:5000
 ````
+Start Radiant:
+````
+./bin/www
+````
 ##DMX Drivers
 
 To fix FT_DEVICE_NOT_OPENED error on Linux:
