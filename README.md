@@ -15,7 +15,7 @@ muse-io --preset 14 --device Muse --osc osc.udp://localhost:5000
 ````
 Start Radiant:
 ````
-./bin/www
+grunt
 ````
 ##DMX Drivers
 
