@@ -101,6 +101,7 @@ io.on('connection', function (socket) {
 
 });
 
+require('./lib/init-animation').start();
 //require('./lib/waiting-animation').start();
 
 module.exports = app;

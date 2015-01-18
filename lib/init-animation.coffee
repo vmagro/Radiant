@@ -10,10 +10,10 @@ start = ->
   begin()
 
 begin = ->
-  var arr = [0xff3322, 0xffdd00, 0x66cc66, 0x55acee]
+  arr = [0xff3322, 0xffdd00, 0x66cc66, 0x55acee]
 
   for light in allLights
-    light.setcolor arr[count % arr.length], duration
+    light.setColor arr[count % arr.length], duration
     count++
     setTimeout(begin, duration + skip)
 
