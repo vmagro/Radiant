@@ -98,9 +98,9 @@ io.on "connection", (socket) ->
     if oscData.args and oscData.address is "/muse/elements/touching_forehead"
       touching = oscData.args[0]
       if touching != 1
-        require('./lib/waiting-animation').start()
+        standby.start()
       else
-        require('./lib/waiting-animation').end()
+        standby.end()
 
     if oscData.args and oscData.address is "/muse/elements/jaw_clench"
       jawClench = oscData.args[0]
@@ -123,7 +123,7 @@ io.on "connection", (socket) ->
 
   socket.on "light", (lightData) ->
     console.log "got light data from socket"
-    waiting.end()
+    standby.end()
     for i of lightData
       if lightData.hasOwnProperty(i)
         console.log "setting color for " + i + " -> " + lightData[i].toString(16)
