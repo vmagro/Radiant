@@ -75,7 +75,7 @@ udpPort.open()
 
 Light = require("./lib/light")
 waiting = require("./lib/waiting-animation")
-waiting.start()
+#waiting.start()
 
 
 io.on "connection", (socket) ->
@@ -90,8 +90,9 @@ io.on "connection", (socket) ->
       socket.emit "news", oscData
 
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
-      multiplier = value.args[0]
+      multiplier = oscData.args[0]  + 0.01
       color = (0x0000ff - 0xff0000) * multiplier
+      console.log(multiplier + " " + color.toString(16))
       Light.setAll(color)
 
   socket.on "light", (lightData) ->
