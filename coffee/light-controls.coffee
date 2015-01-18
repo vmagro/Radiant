@@ -22,8 +22,9 @@ do lights = ->
   app.light4.subscribe(subscribeFor(3))
 
   io().on('light', (data) ->
-    for num, color in data
-      lightObservables[num](color)
+    for i of data
+      if data.hasOwnProperty(i)
+        lightObservables[i](data[color])
   )
 
   $(".controls-li").click ->
