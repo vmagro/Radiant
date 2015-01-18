@@ -16,6 +16,10 @@ class Light
     Light.registerLight(@num, this)
 
   setColor: (hex, duration, complete) ->
+    if @tween
+      console.log('cancelling old tween')
+      @tween.cancel()
+
     if arguments.length == 1
       @tween = new RgbTween(Light.hexToRgb(@hex), Light.hexToRgb(hex), 1000)
     else
@@ -27,6 +31,9 @@ class Light
     )
     if complete
       @tween.onComplete(complete)
+    @tween.onComplete(() ->
+      delete self.tween
+    )
 
     @tween.start()
 
