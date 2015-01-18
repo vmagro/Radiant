@@ -1,6 +1,8 @@
 events = require('events')
 
-stepLength = 30
+chroma = require('chroma-js')
+
+stepLength = 10
 
 class RgbTween
 
@@ -10,13 +12,10 @@ class RgbTween
     @g = start.g
     @b = start.b
 
-    @rStep = (@target.r - @r) / (@duration / stepLength)
-    @gStep = (@target.g - @g) / (@duration / stepLength)
-    @bStep = (@target.b - @b) / (@duration / stepLength)
+    @scale = chroma.scale([RgbTween.rgbToHex(start), RgbTween.rgbToHex(@target)])
+    @scaleMultiple = 0.0
 
-    @rInc = @target.r - @r > 0
-    @gInc = @target.g - @g > 0
-    @bInc = @target.b - @b > 0
+    @scaleDelta = 1.0 / (@duration / stepLength)
 
   onUpdate: (cb) ->
     @emitter.on('update', cb)
@@ -28,30 +27,25 @@ class RgbTween
     @step()
 
   cancel: () ->
-    console.log('cancelling tween')
     clearTimeout(@timeout)
 
   step: () ->
-    @r += @rStep
-    @g += @gStep
-    @b += @bStep
-
-    if (@rInc and @r > @target.r) or (not @rInc and @r < @target.r)
-      @r = @target.r
-
-    if (@gInc and @g > @target.g) or (not @gInc and @g < @target.g)
-      @g = @target.g
-
-    if (@bInc and @b > @target.b) or (not @bInc and @b < @target.b)
-      @b = @target.b
+    color = @scale(@scaleMultiple)._rgb
+    @r = color[0]
+    @g = color[1]
+    @b = color[2]
 
     @emitter.emit('update')
 
-    if @r == @target.r and @g == @target.g and @b == @target.b
+    if @scaleMultiple > 1 or (@r == @target.r and @g == @target.g and @b == @target.b)
       clearTimeout(@timeout)
       @emitter.emit('complete')
     else
       @timeout = setTimeout(@step.bind(this), stepLength)
 
+    @scaleMultiple += @scaleDelta
 
+  @rgbToHex: (rgb) ->
+    hex = (rgb.r << 16) + (rgb.g << 8) + rgb.b
+    '#' + ("00000000" + hex.toString(16)).slice(-6)
 module.exports = RgbTween

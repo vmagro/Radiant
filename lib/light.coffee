@@ -17,7 +17,6 @@ class Light
 
   setColor: (hex, duration, complete) ->
     if @tween
-      console.log('cancelling old tween')
       @tween.cancel()
       delete @tween
 
