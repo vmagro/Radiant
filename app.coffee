@@ -90,6 +90,13 @@ io.on "connection", (socket) ->
       lastPointTime = now
       socket.emit "news", oscData
 
+    if oscData.args and oscData.address is "/muse/elements/touching_forehead"
+      touching = oscData.args[0]
+      if touching != 1
+        require('./lib/waiting-animation').start()
+      else
+        require('./lib/waiting-animation').stop()
+
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
       scale = chroma.scale(['blue', 'red'])
       color = scale(oscData.args[0])
@@ -120,5 +127,4 @@ io.on "connection", (socket) ->
 
   return
 
-#require('./lib/waiting-animation').start();
 module.exports = app
