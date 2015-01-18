@@ -77,6 +77,7 @@ Light = require("./lib/light")
 waiting = require("./lib/waiting-animation")
 waiting.start()
 
+chroma = require('chroma-js')
 
 io.on "connection", (socket) ->
   console.log "socket.io connection"
@@ -90,8 +91,9 @@ io.on "connection", (socket) ->
       socket.emit "news", oscData
 
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
-      multiplier = value.args[0]
-      color = (0x0000ff - 0xff0000) * multiplier
+      scale = chroma.scale(['red', 'blue'])
+      color = scale(oscData.args[0])
+      color = (color._rgb[0] << 16) + (color._rgb[1] << 8) + color._rgb[2];
       Light.setAll(color)
 
   socket.on "light", (lightData) ->
