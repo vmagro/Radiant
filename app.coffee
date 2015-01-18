@@ -91,7 +91,7 @@ io.on "connection", (socket) ->
       socket.emit "news", oscData
 
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
-      scale = chroma.scale(['red', 'blue'])
+      scale = chroma.scale(['blue', 'red'])
       color = scale(oscData.args[0])
       color = (color._rgb[0] << 16) + (color._rgb[1] << 8) + color._rgb[2];
       Light.setAll(color)
