@@ -12,15 +12,6 @@ do lights = ->
       else
         lightObservables[pickerNum](parseInt(color.tiny.toHex(), 16))
 
-  subscribeFor = (pickerNum) ->
-    return (value) ->
-      $('#picker' + (pickerNum + 1)).trigger('colorpickersliders.updateColor', '#' + value.toString(16))
-
-  app.light1.subscribe(subscribeFor(0))
-  app.light2.subscribe(subscribeFor(1))
-  app.light3.subscribe(subscribeFor(2))
-  app.light4.subscribe(subscribeFor(3))
-
   io().on('light', (data) ->
     for i of data
       if data.hasOwnProperty(i)
