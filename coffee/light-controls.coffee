@@ -24,7 +24,7 @@ do lights = ->
   io().on('light', (data) ->
     for i of data
       if data.hasOwnProperty(i)
-        lightObservables[i](data[color])
+        lightObservables[i](data[i])
   )
 
   $(".controls-li").click ->
