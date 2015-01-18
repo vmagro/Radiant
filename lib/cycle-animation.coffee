@@ -19,7 +19,7 @@ begin = ->
     console.log(count % arr.length)
 
   count++
-  timeout = setTimeout(begin, duration + skip)
+  setTimeout(begin,duration + skip)
 
 end = ->
   console.log('ending animation')

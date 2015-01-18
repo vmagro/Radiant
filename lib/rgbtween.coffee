@@ -1,6 +1,6 @@
 events = require('events')
 
-stepLength = 10
+stepLength = 30
 
 class RgbTween
 
