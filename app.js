@@ -85,7 +85,7 @@ io.on('connection', function (socket) {
     // socket.emit('news', { hello: 'world' });
     // Listen for incoming OSC bundles.
     udpPort.on("message", function (oscData) {
-        now = Date.now()
+        now = Date.now();
         if ((now - lastPointTime <= 1000) || (lastPointTime - now <= 1000)) {
             lastPointTime = now;
             socket.emit('news', oscData);
