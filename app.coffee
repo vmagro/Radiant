@@ -63,16 +63,21 @@ app.use (err, req, res, next) ->
 #        error: {}
 #    });
 #});
+
 lastPointTime = Date.now()
 now = undefined
+
 udpPort = new osc.UDPPort(
   localAddress: "127.0.0.1"
   localPort: 5000
 )
 udpPort.open()
+
 Light = require("./lib/light")
 waiting = require("./lib/waiting-animation")
 waiting.start()
+
+
 io.on "connection", (socket) ->
   console.log "socket.io connection"
 
@@ -83,7 +88,11 @@ io.on "connection", (socket) ->
     if (now - lastPointTime <= 1000) or (lastPointTime - now <= 1000)
       lastPointTime = now
       socket.emit "news", oscData
-    return
+
+    if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
+      multiplier = value.args[0]
+      color = (0x0000ff - 0xff0000) * multiplier
+      Light.setAll(color)
 
   socket.on "light", (lightData) ->
     console.log "got light data from socket"
@@ -102,7 +111,6 @@ io.on "connection", (socket) ->
     return
 
   return
-
 
 #require('./lib/waiting-animation').start();
 module.exports = app
