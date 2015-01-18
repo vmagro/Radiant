@@ -64,3 +64,36 @@ $(document).ready(() ->
     app.mellowGraphData.push([app.mellowGraphData().length, Math.round(Math.random() * 100)])
   , 50)
 )
+
+$(document).ready(() ->
+  app.concentrationGraphData.push(
+    [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5], [9, 5], [10, 5]
+  )
+
+  plot = $.plot('#concentration-graph', [ app.concentrationGraphData() ],
+    series:
+      shadowSize: 0
+
+    xaxis:
+      show: false
+
+    yaxis:
+      min: 0
+      max: 110
+  )
+
+  app.concentrationGraphData.subscribe(() ->
+    plot.setData [ app.concentrationGraphData() ]
+    plot.draw()
+  )
+
+  plot.draw()
+
+  setInterval(() ->
+    app.concentrationGraphData.shift()
+    app.concentrationGraphData(for elem in app.concentrationGraphData()
+        elem = [elem[0] - 1, elem[1]]
+    )
+    app.concentrationGraphData.push([app.concentrationGraphData().length, Math.round(Math.random() * 100)])
+  , 50)
+)
