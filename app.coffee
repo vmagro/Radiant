@@ -96,6 +96,12 @@ io.on "connection", (socket) ->
       color = (color._rgb[0] << 16) + (color._rgb[1] << 8) + color._rgb[2];
       Light.setAll(color)
 
+      lightVals = {}
+      for i in [0..4]
+        lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
+        i++
+      socket.emit "light", lightVals
+
   socket.on "light", (lightData) ->
     console.log "got light data from socket"
     waiting.end()
@@ -103,10 +109,10 @@ io.on "connection", (socket) ->
       if lightData.hasOwnProperty(i)
         console.log "setting color for " + i + " -> " + lightData[i].toString(16)
         Light.lights()[i].setColorImmediately Light.hexToRgb(lightData[i])
-    lightVals = {}
-    i = 0
 
-    while i < 4
+
+    lightVals = {}
+    for i in [0..4]
       lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
       i++
     socket.emit "light", lightVals
