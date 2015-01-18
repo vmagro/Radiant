@@ -16,7 +16,6 @@ begin = ->
   for light in allLights
     light.setColor arr[count % arr.length], duration
     count++
-    console.log(count % arr.length)
 
   count++
   setTimeout(begin,duration + skip)

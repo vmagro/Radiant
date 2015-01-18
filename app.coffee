@@ -67,6 +67,8 @@ app.use (err, req, res, next) ->
 lastPointTime = Date.now()
 now = undefined
 
+blink182 = 0x00000
+
 udpPort = new osc.UDPPort(
   localAddress: "127.0.0.1"
   localPort: 5000
@@ -90,19 +92,24 @@ io.on "connection", (socket) ->
       lastPointTime = now
       socket.emit "news", oscData
 
-    if oscData.args and oscData.address is "/muse/elements/touching_forehead"
-      touching = oscData.args[0]
-      if touching != 1
-        require('./lib/waiting-animation').start()
-      else
-        require('./lib/waiting-animation').end()
-
     if oscData.args and oscData.address is "/muse/elements/jaw_clench"
       jawClench = oscData.args[0]
       if jawClench != 1
         require('./lib/cycle-animation').end()
       else
         require('./lib/cycle-animation').start()
+      return
+
+    if oscData.args and oscData.address is "muse/elements/blink"
+      blink = oscData.args[0]
+      blink182 = ((blink182 << 4) | 1) & 0x11111
+      if blink182 == 0x11111
+        console.log("")
+        require('./lib/cal-animation').start()
+      else
+        require('./lib/cal-animation').end()
+      console.log(blink182)
+      return
 
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
       scale = chroma.scale(['blue', 'red'])
@@ -131,6 +138,13 @@ io.on "connection", (socket) ->
       i++
     socket.emit "light", lightVals
     return
+
+    if oscData.args and oscData.address is "/muse/elements/touching_forehead"
+      touching = oscData.args[0]
+      if touching != 1
+        require('./lib/waiting-animation').start()
+      else
+        require('./lib/waiting-animation').end()
 
   return
 
