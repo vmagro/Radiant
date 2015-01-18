@@ -76,6 +76,9 @@ var udpPort = new osc.UDPPort({
 udpPort.open();
 
 var Light = require('./lib/light');
+var waiting = require('./lib/waiting-animation');
+
+waiting.start();
 
 io.on('connection', function (socket) {
     console.log("socket.io connection");
@@ -91,17 +94,22 @@ io.on('connection', function (socket) {
 
     socket.on('light', function (lightData) {
         console.log('got light data from socket');
+        waiting.end();
         for (var i in lightData) {
             if (lightData.hasOwnProperty(i)) {
-                console.log('setting color for ' + i);
+                console.log('setting color for ' + i + ' -> ' + lightData[i].toString(16));
                 Light.lights()[i].setColor(lightData[i]);
             }
         }
+        lightVals = {};
+        for(var i =0; i<4; i++){
+            lightVals[i] = parseInt(Light.lights()[i].getColor().substring(2), 16)
+        }
+        socket.emit('light', lightVals);
     });
 
 });
 
-require('./lib/init-animation').start();
 //require('./lib/waiting-animation').start();
 
 module.exports = app;
