@@ -23,6 +23,9 @@
     "grunt-contrib-coffee": "~0.12.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-jade": "^0.12.0",
-    "grunt": "~0.4.5"
+    "grunt": "~0.4.5",
+    "server": "0.0.3",
+    "grunt-express": "~1.4.1",
+    "grunt-express-server": "~0.4.19"
   }
 }

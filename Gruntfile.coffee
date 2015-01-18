@@ -4,8 +4,10 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
-        files: ['lib/*.coffee', 'routes/*.coffee', 'coffee/*.coffee']
-        tasks: ['coffee:build']
+        files: ['app.coffee', 'lib/*.coffee', 'routes/*.coffee', 'coffee/*.coffee']
+        tasks: ['coffee:build', 'express:dev']
+        options:
+          spawn: false
 
     coffee:
       build:
@@ -21,10 +23,16 @@ module.exports = (grunt) ->
           'public/js/app-all.js': ['coffee/app.coffee']
           'public/js/light-controls.js': ['coffee/light-controls.coffee']
           'public/js/index.js': ['coffee/index.coffee']
+          'app.js': ['app.coffee']
 
+    express:
+      dev:
+        options:
+          script: 'app.js'
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-express-server'
 
   grunt.registerTask 'default', ['build']
-  grunt.registerTask 'build', ['coffee:build', 'watch']
+  grunt.registerTask 'build', ['coffee:build', 'express:dev', 'watch']
