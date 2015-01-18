@@ -2,7 +2,7 @@ extends layout
 block content
     #index
         .row
-            #frontLeftRed(data-bind='if: frontLeft() >= 3')
+            #frontLeftRed(data-bind='visible: frontLeft() >= 3')
                 .col-lg-3.col-md-6
                     .panel.panel-red
                         .panel-heading
@@ -12,7 +12,7 @@ block content
                                 .col-xs-9.text-right
                                     .huge Front Left
                                     div Adjust Fit
-            #frontLeftYellow(data-bind='if: frontLeft() == 2')
+            #frontLeftYellow(data-bind='visible: frontLeft() == 2')
                 .col-lg-3.col-md-6
                     .panel.panel-yellow
                         .panel-heading
@@ -22,7 +22,7 @@ block content
                                 .col-xs-9.text-right
                                     .huge Front Left
                                     div Adjust Fit
-            #frontLeftGreen(data-bind='if: frontLeft() == 1')
+            #frontLeftGreen(data-bind='visible: frontLeft() == 1')
                 .col-lg-3.col-md-6
                     .panel.panel-green
                         .panel-heading
