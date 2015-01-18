@@ -36,3 +36,5 @@ lib/*.js
 routes/lights.js
 public/js/index.js
 public/js/light-controls.js
+public/js/app-all.js
+public/js/index.js
