@@ -37,6 +37,20 @@ do sensor_status = ->
       )
       app.mellowGraphData.push([app.mellowGraphData().length, value.args[0]])
 
+    if value.args and value.address is "/muse/elements/blink"
+      app.blinkGraphData.shift()
+      app.blinkGraphData(for elem in app.blinkGraphData()
+          elem = [elem[0] - 1, elem[1]]
+      )
+      app.blinkGraphData.push([app.blinkGraphData().length, value.args[0]])
+
+    if value.args and value.address is "/muse/elements/jaw_clench"
+      app.clenchGraphData.shift()
+      app.clenchGraphData(for elem in app.clenchGraphData()
+          elem = [elem[0] - 1, elem[1]]
+      )
+      app.clenchGraphData.push([app.clenchGraphData().length, value.args[0]])
+
 
 $(document).ready(() ->
   for i in [0...200]
@@ -48,7 +62,7 @@ $(document).ready(() ->
 
     yaxis:
       min: 0
-      max: 100
+      max: 1
 
     xaxis:
       show: false
@@ -69,12 +83,54 @@ $(document).ready(() ->
 
     yaxis:
       min: 0
-      max: 100
+      max: 1
 
     xaxis:
       show: false
   )
   app.concentrationGraphData.subscribe (data) ->
+    plot.setData [data]
+    plot.draw()
+    return
+)
+
+$(document).ready(() ->
+  for i in [0...200]
+    app.blinkGraphData.push([i, 0])
+
+  plot = $.plot("#blink-graph", [app.blinkGraphData()],
+    series:
+      shadowSize: 0 # Drawing is faster without shadows
+
+    yaxis:
+      min: 0
+      max: 1
+
+    xaxis:
+      show: false
+  )
+  app.blinkGraphData.subscribe (data) ->
+    plot.setData [data]
+    plot.draw()
+    return
+)
+
+$(document).ready(() ->
+  for i in [0...200]
+    app.clenchGraphData.push([i, 0])
+
+  plot = $.plot("#clench-graph", [app.clenchGraphData()],
+    series:
+      shadowSize: 0 # Drawing is faster without shadows
+
+    yaxis:
+      min: 0
+      max: 1
+
+    xaxis:
+      show: false
+  )
+  app.clenchGraphData.subscribe (data) ->
     plot.setData [data]
     plot.draw()
     return
