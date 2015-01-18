@@ -2,10 +2,16 @@ do sensor_status = ->
   $(".index-li").addClass "active"
 
   window.app = new App()
+  ko.applyBindings app
   mellowIncrement = 0
   concentrationIncrement = 0
-  ko.applyBindings app
 
+  $(".index-li").click ->
+    $(this).addClass "active"
+    $(".controls-li").removeClass "active"
+    $("#index").removeClass "hidden"
+    $("controls").addClass "hidden"
+  
   socket = io.connect(window.location.hostname)
   socket.on "news", (value) ->
     if value.args and value.address is "/muse/elements/horseshoe"

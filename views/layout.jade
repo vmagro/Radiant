@@ -16,17 +16,8 @@ html
         // Custom Fonts
         link(href='font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
         link(href='css/radiant.css', rel='stylesheet')
-
-        script(src='js/jquery.js')
-        // Bootstrap Core JavaScript
-        script(src='js/bootstrap.min.js')
-        script(src='js/socket.io-client/socket.io.js')
-        // Morris Charts JavaScript
-        //script(src='js/plugins/morris/raphael.min.js')
-        //script(src='js/plugins/morris/morris.min.js')
-        //script(src='js/plugins/morris/morris-data.js')
-        script(src='js/knockout-latest.js')
-        script(src='js/app-all.js')
+        link(href='css/bootstrap.colorpickersliders.min.css', rel='stylesheet')
+        link(href='css/bootstrap.colorpickersliders.min.css', rel='stylesheet')
 
     body
         #wrapper
@@ -49,12 +40,12 @@ html
                 .collapse.navbar-collapse.navbar-ex1-collapse
                     ul.nav.navbar-nav.side-nav.radiance-nav
                         li.index-li
-                            a(href='/')
+                            a(href='#')
                                 i.fa.fa-fw.fa-bar-chart-o
                                 span &nbsp Dashboard
 
                         li.controls-li
-                            a(href='/controls')
+                            a(href='#')
                                 i.fa.fa-fw.fa-sliders
                                 span &nbsp Controls
 
@@ -65,9 +56,18 @@ html
                                 #light3.i.fa.fa-circle(data-bind='style: { color: light3Hex() }')
                                 #light4.i.fa.fa-circle(data-bind='style: { color: light4Hex() }')
 
-
-                // /.navbar-collapse
-
             #page-wrapper
                 .container-fluid
                     block content
+                        
+    script(src='js/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='js/bootstrap.min.js')
+    script(src='js/socket.io-client/socket.io.js')
+    script(src='js/knockout-latest.js')
+    script(src='js/app-all.js')
+    script(src='js/tinycolor.js')
+    script(src='js/bootstrap.colorpickersliders.min.js')
+    script(src='js/plugins/flot/jquery.flot.js')
+    script(src='js/index.js')
+    script(src='js/light-controls.js')

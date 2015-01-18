@@ -1,6 +1,4 @@
 do lights = ->
-  window.app = new App()
-  ko.applyBindings app
   lightObservables = [app.light1, app.light2, app.light3, app.light4]
 
   onChangeFor = (pickerNum) ->
@@ -28,7 +26,12 @@ do lights = ->
       lightObservables[num] = color
   )
 
-  $(".controls-li").addClass "active"
+  $(".controls-li").click ->
+    $(this).addClass "active"
+    $(".index-li").removeClass "active"
+    $("#controls").removeClass "hidden"
+    $("index").addClass "hidden"
+
   $("#picker1").ColorPickerSliders
     color: "#000099"
     flat: true
