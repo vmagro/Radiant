@@ -1,7 +1,7 @@
 do lights = ->
   window.app = new App()
   ko.applyBindings app
-  lightObservables = [app.light1, app.light2, app.light3 app.light4]
+  lightObservables = [app.light1, app.light2, app.light3, app.light4]
 
   onChangeFor = (pickerNum) ->
     return (container, color) ->
