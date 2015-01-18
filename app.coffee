@@ -95,7 +95,14 @@ io.on "connection", (socket) ->
       if touching != 1
         require('./lib/waiting-animation').start()
       else
-        require('./lib/waiting-animation').stop()
+        require('./lib/waiting-animation').end()
+
+    if oscData.args and oscData.address is "/muse/elements/jaw_clench"
+      jawClench = oscData.args[0]
+      if jawClench != 1
+        require('./lib/cycle-animation').end()
+      else
+        require('./lib/cycle-animation').start()
 
     if oscData.args and oscData.address is "/muse/elements/experimental/concentration"
       scale = chroma.scale(['blue', 'red'])
