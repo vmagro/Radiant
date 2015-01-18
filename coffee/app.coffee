@@ -6,6 +6,8 @@ class App
     @rightEar = ko.observable 4
     @mellowGraphData = ko.observableArray()
     @concentrationGraphData = ko.observableArray()
+    @blinkGraphData = ko.observableArray()
+    @clenchGraphData = ko.observableArray()
 
     @light1 = ko.observable(0x000099)
     @light2 = ko.observable(0x000099)
