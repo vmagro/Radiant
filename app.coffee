@@ -75,7 +75,7 @@ udpPort.open()
 
 Light = require("./lib/light")
 waiting = require("./lib/waiting-animation")
-waiting.start()
+#waiting.start()
 
 chroma = require('chroma-js')
 
