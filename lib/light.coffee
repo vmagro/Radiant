@@ -19,6 +19,7 @@ class Light
     if @tween
       console.log('cancelling old tween')
       @tween.cancel()
+      delete @tween
 
     if arguments.length == 1
       @tween = new RgbTween(Light.hexToRgb(@hex), Light.hexToRgb(hex), 1000)
