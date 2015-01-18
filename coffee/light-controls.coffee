@@ -30,7 +30,7 @@ do lights = ->
     $(this).addClass "active"
     $(".index-li").removeClass "active"
     $("#controls").removeClass "hidden"
-    $("index").addClass "hidden"
+    $("#index").addClass "hidden"
 
   $("#picker1").ColorPickerSliders
     color: "#000099"

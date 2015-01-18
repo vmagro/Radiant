@@ -10,7 +10,7 @@ do sensor_status = ->
     $(this).addClass "active"
     $(".controls-li").removeClass "active"
     $("#index").removeClass "hidden"
-    $("controls").addClass "hidden"
+    $("#controls").addClass "hidden"
   
   socket = io.connect(window.location.hostname)
   socket.on "news", (value) ->
