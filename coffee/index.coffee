@@ -33,28 +33,24 @@ do sensor_status = ->
 
 
 $(document).ready(() ->
-  app.mellowGraphData.push(
-    [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5], [9, 5], [10, 5]
-  )
+  for i in [0...200]
+    app.mellowGraphData.push([i, 0])
 
-  plot = $.plot('#mellow-graph', [ app.mellowGraphData() ],
+  plot = $.plot("#mellow-graph", [app.mellowGraphData()],
     series:
-      shadowSize: 0
-
-    xaxis:
-      show: false
+      shadowSize: 0 # Drawing is faster without shadows
 
     yaxis:
       min: 0
-      max: 110
-  )
+      max: 100
 
-  app.mellowGraphData.subscribe(() ->
-    plot.setData [ app.mellowGraphData() ]
+    xaxis:
+      show: false
+  )
+  app.mellowGraphData.subscribe (data) ->
+    plot.setData [data]
     plot.draw()
-  )
-
-  plot.draw()
+    return
 
   setInterval(() ->
     app.mellowGraphData.shift()
@@ -66,28 +62,24 @@ $(document).ready(() ->
 )
 
 $(document).ready(() ->
-  app.concentrationGraphData.push(
-    [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5], [9, 5], [10, 5]
-  )
+  for i in [0...200]
+    app.concentrationGraphData.push([i, 0])
 
-  plot = $.plot('#concentration-graph', [ app.concentrationGraphData() ],
+  plot = $.plot("#concentration-graph", [app.concentrationGraphData()],
     series:
-      shadowSize: 0
-
-    xaxis:
-      show: false
+      shadowSize: 0 # Drawing is faster without shadows
 
     yaxis:
       min: 0
-      max: 110
-  )
+      max: 100
 
-  app.concentrationGraphData.subscribe(() ->
-    plot.setData [ app.concentrationGraphData() ]
+    xaxis:
+      show: false
+  )
+  app.concentrationGraphData.subscribe (data) ->
+    plot.setData [data]
     plot.draw()
-  )
-
-  plot.draw()
+    return
 
   setInterval(() ->
     app.concentrationGraphData.shift()
