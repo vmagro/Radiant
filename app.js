@@ -98,7 +98,7 @@ io.on('connection', function (socket) {
         for (var i in lightData) {
             if (lightData.hasOwnProperty(i)) {
                 console.log('setting color for ' + i + ' -> ' + lightData[i].toString(16));
-                Light.lights()[i].setColor(lightData[i]);
+                Light.lights()[i].setColorImmediately(Light.hexToRgb(lightData[i]));
             }
         }
         lightVals = {};
