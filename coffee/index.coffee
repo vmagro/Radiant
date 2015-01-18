@@ -57,14 +57,6 @@ $(document).ready(() ->
     plot.setData [data]
     plot.draw()
     return
-
-  setInterval(() ->
-    app.mellowGraphData.shift()
-    app.mellowGraphData(for elem in app.mellowGraphData()
-        elem = [elem[0] - 1, elem[1]]
-    )
-    app.mellowGraphData.push([app.mellowGraphData().length, Math.round(Math.random() * 100)])
-  , 50)
 )
 
 $(document).ready(() ->
@@ -86,12 +78,4 @@ $(document).ready(() ->
     plot.setData [data]
     plot.draw()
     return
-
-  setInterval(() ->
-    app.concentrationGraphData.shift()
-    app.concentrationGraphData(for elem in app.concentrationGraphData()
-        elem = [elem[0] - 1, elem[1]]
-    )
-    app.concentrationGraphData.push([app.concentrationGraphData().length, Math.round(Math.random() * 100)])
-  , 50)
 )
