@@ -79,8 +79,8 @@ udpPort = new osc.UDPPort(
 )
 udpPort.open()
 
-waiting = require("./lib/waiting-animation")
-#waiting.start()
+standby = require("./lib/standby-animation")
+standby.start()
 
 chroma = require('chroma-js')
 

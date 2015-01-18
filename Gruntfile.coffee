@@ -16,7 +16,8 @@ module.exports = (grunt) ->
         files:
           'lib/light.js': ['lib/light.coffee']
           'lib/rgbtween.js': ['lib/rgbtween.coffee']
-          'lib/waiting-animation.js': ['lib/waiting-animation.coffee']
+          'lib/standby-animation.js': ['lib/standby-animation.coffee']
+          'lib/standby-animation-child.js': ['lib/standby-animation-child.coffee']
           'lib/cycle-animation.js': ['lib/cycle-animation.coffee']
           'lib/cal-animation.js': ['lib/cal-animation.coffee']
           'routes/lights.js': ['routes/lights.coffee']
